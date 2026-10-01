@@ -2,13 +2,13 @@ package lab2;
 
 import java.util.Arrays;
 
-public class Disciplinas {
+public class Disciplina {
     private String nomeDisciplina;
     private int horasEstudo;
     private double[] notas;
     private double media;
 
-    public Disciplinas(String nomeDisciplina) {
+    public Disciplina(String nomeDisciplina) {
         this.nomeDisciplina = nomeDisciplina;
         this.horasEstudo = 0;
         this.notas = new double[4];
@@ -17,14 +17,12 @@ public class Disciplinas {
     public void cadastraHoras(int horas) {
         this.horasEstudo += horas;
     }
-    public void cadastraNotas(int nota,double valorNota) {
+    public void cadastraNota(int nota,double valorNota) {
         this.notas[nota-1] = valorNota;
         double somador = 0;
         for (double n : this.notas) {
             somador += n;
         }
-        this.notas = new double[4];
-
         this.media = somador / 4;
     }
     public boolean aprovado() {
@@ -32,6 +30,6 @@ public class Disciplinas {
     }
     @Override
     public String toString() {
-        return nomeDisciplina + " " + horasEstudo +" "+ media +" "+ Arrays.toString(notas);
+        return nomeDisciplina + " " + horasEstudo +" "+ this.media +" "+ Arrays.toString(this.notas);
     }
 }

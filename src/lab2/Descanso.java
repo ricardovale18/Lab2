@@ -18,6 +18,9 @@ public class Descanso {
     }
 
     public String getStatusGeral() {
+        if (numeroSemanas == 0) {
+            return "cansado";
+        }
         if ((this.horasDescanso / this.numeroSemanas) >= 26) {
             return "descansado";
         } else {
