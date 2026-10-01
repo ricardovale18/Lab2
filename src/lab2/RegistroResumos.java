@@ -20,7 +20,7 @@ public class RegistroResumos {
             }
         }
         temas[proximaPosicao] = tema;
-        conteudos[proximaPosicao] = tema +": "+ conteudo;
+        conteudos[proximaPosicao] = conteudo;
 
         proximaPosicao++;
         if (proximaPosicao == temas.length) {
@@ -31,7 +31,11 @@ public class RegistroResumos {
         }
     }
     public String[] pegaResumos() {
-        return conteudos;
+        String[] resumos = new String[quantidadeResumos];
+            for (int i=0 ; i<quantidadeResumos ;i++) {
+                resumos[i] = temas[i] + ": "+ conteudos[i];
+            }
+        return resumos;
     }
     public String imprimeResumos() {
         String resumos = "";
