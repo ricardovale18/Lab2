@@ -53,7 +53,7 @@ public class Coisa {
         meusResumos.adiciona("Tipo", "Identifica a semântica (operações e significados) de um conjunto de dados.");
 
 
-        String[] resumos = meusResumos.pegaResumos();
+        Resumo[] resumos = meusResumos.pegaResumos();
 
 
         for (int i = 0; i < meusResumos.conta(); i++) {
