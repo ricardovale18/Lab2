@@ -18,6 +18,7 @@ public class Disciplina {
     private double[] notas;
     /** Média calculada a partir das 4 notas.*/
     private double media;
+    private int[] pesos;
 
     /** Constrói uma disciplina a partir do seu nome.
      * A disciplina inicia com 0 horas de estudo, 4 notas zeradas e média 0.00.
@@ -28,7 +29,24 @@ public class Disciplina {
         this.horasEstudo = 0;
         this.notas = new double[4];
         this.media = 0.00;
+        this.pesos = new int[]{1, 1, 1, 1};
     }
+    public Disciplina(String nomeDisciplina, int numNotas) {
+        this.nomeDisciplina = nomeDisciplina;
+        this.horasEstudo = 0;
+        this.notas = new double[numNotas];
+        this.media = 0.00;
+        this.pesos = new int[]{1, 1, 1, 1};
+
+    }
+    public Disciplina(String nomeDisciplina, int numNotas, int[] pesosNotas) {
+        this.nomeDisciplina = nomeDisciplina;
+        this.horasEstudo = 0;
+        this.notas = new double[numNotas];
+        this.media = 0.00;
+        this.pesos = pesosNotas;
+    }
+
     /** Cadastra e acumula a quantidade de horas dedicadas aos estudos da disciplina.
      *
      * @param horas a quantidade de horas a ser somada ao total de horas de estudo*/
@@ -41,11 +59,13 @@ public class Disciplina {
      * @param valorNota o valor da nota obtida na avaliação*/
     public void cadastraNota(int nota,double valorNota) {
         this.notas[nota-1] = valorNota;
-        double somador = 0;
-        for (double n : this.notas) {
-            somador += n;
+        double somaNotas = 0;
+        int soma_pesos = 0;
+        for (int i = 0; i<notas.length ;i++) {
+            somaNotas += notas[i] * pesos[i];
+            soma_pesos += pesos[i];
         }
-        this.media = somador / 4;
+        this.media = somaNotas / soma_pesos;
     }
     /** Informa se o aluno foi aprovado na disciplina se a média for maior ou igual a 7.0.
      * @return true se a média for maior ou igual a 7.0, ou false caso contrário*/

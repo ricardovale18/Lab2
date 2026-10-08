@@ -1,4 +1,7 @@
 package lab2;
+
+import java.util.Locale;
+
 /**
  * Armazena e gerencia resumos de estudos.
  *
@@ -69,5 +72,15 @@ public class RegistroResumos {
             }
         }
         return false;
+    }
+    public String[] busca(String chaveDeBusca) {
+        String[] buscados = new String[quantidadeResumos];
+        String chaveTratada = chaveDeBusca.toLowerCase()
+        int ibuscados = 0;
+        for (Resumo r: this.resumos) {
+            if (r.getConteudo().toLowerCase().contains(chaveTratada)) {
+
+            };
+        }
     }
 }
