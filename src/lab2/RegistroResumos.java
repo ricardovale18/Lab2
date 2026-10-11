@@ -1,6 +1,6 @@
 package lab2;
 
-import java.util.Locale;
+import java.util.*;
 
 /**
  * Armazena e gerencia resumos de estudos.
@@ -43,11 +43,18 @@ public class RegistroResumos {
         }
     }
     /** Retorna o array contendo todos os resumos armazenados.
-     *  @return array de objetos Resumo */
-    public Resumo[] pegaResumos() {
-        return this.resumos;
+     *  @return array de String resultado */
+    public String[] pegaResumos() {
+        String[] resultado = new String[quantidadeResumos];
+
+        int indice = 0;
+        for(int i = 0;i< resumos.length;i++)
+            if (resumos[i] != null) {
+                resultado[i] = resumos[i].toString();
+            }
+        return resultado;
     }
-    /** Retorna a listagem formatada dos resumos cadastrados e seus temas.
+    /** Retorna a lista dos resumos cadastrados e seus temas.
      * @return String com contagem e temas separados por "|" */
     public String imprimeResumos() {
         String imprimeresumo = "";
@@ -63,7 +70,8 @@ public class RegistroResumos {
     public int conta() {
         return quantidadeResumos;
     }
-    /** Verifica se já existe um resumo cadastrado com o tema informado. @param tema tema a ser pesquisado
+    /** Verifica se já existe um resumo cadastrado com o tema informado.
+     * @param tema tema a ser pesquisado
      * @return true se o tema existir, false caso contrário */
     public boolean temResumo(String tema) {
         for (Resumo t : this.resumos) {
@@ -73,14 +81,26 @@ public class RegistroResumos {
         }
         return false;
     }
+    /** Procura resumos a partir de parte do conteudo do resumo.
+     * @param chaveDeBusca palavra ou frase a ser buscada para encontrar um tema.
+     * @return Array de Strings com os temas encontrados. */
     public String[] busca(String chaveDeBusca) {
         String[] buscados = new String[quantidadeResumos];
-        String chaveTratada = chaveDeBusca.toLowerCase()
+        String chaveTratada = chaveDeBusca.toLowerCase();
         int ibuscados = 0;
-        for (Resumo r: this.resumos) {
-            if (r.getConteudo().toLowerCase().contains(chaveTratada)) {
 
-            };
+        for (int i = 0;i < quantidadeResumos;i++) {
+            if (resumos[i].getConteudo().toLowerCase().contains(chaveTratada)) {
+                buscados[ibuscados] = resumos[i].getTema();
+                ibuscados++;
+            }
         }
+        String[] resultado = new String[ibuscados];
+
+        for (int i = 0; i < resultado.length; i++) {
+            resultado [i] = buscados[i];
+        }
+        Arrays.sort(resultado);
+        return resultado;
     }
 }
